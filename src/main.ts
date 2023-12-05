@@ -8,6 +8,7 @@ import * as crypto from 'crypto';
 import * as path from 'path';
 
 const privateKeyPath = './private_key/key_for_jwt';
+const publicPath = './public_key/';
 
 function generateRSAKey() {
   const { privateKey, publicKey } = crypto.generateKeyPairSync('rsa', {
@@ -25,6 +26,15 @@ function generateRSAKey() {
   return { privateKey, publicKey };
 }
 export const setup = () => {
+
+
+
+if (fs.existsSync(publicPath)) {
+  console.log(`Private key exists at ${privateKeyPath}`);
+} else {
+  fs.mkdirSync(path.dirname(publicPath), { recursive: true });
+
+}
   fs.mkdirSync(path.dirname(privateKeyPath), { recursive: true });
 
   if (fs.existsSync(privateKeyPath)) {
