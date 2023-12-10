@@ -14,7 +14,7 @@ FROM node:18-alpine as production
 WORKDIR /app
 COPY --from=build /app/package.json ./
 COPY --from=build /app/dist ./dist
-RUN mkdir /app/private_key
+RUN mkdir /app/private_key/
 RUN ssh-keygen -q -t rsa -N '' -f /app/private_key/key_for_jwt
 COPY --from=build /app/node_modules ./node_modules
 
