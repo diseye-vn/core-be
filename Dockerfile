@@ -17,7 +17,7 @@ WORKDIR /app
 COPY --from=build /app/package.json ./
 COPY --from=build /app/dist ./dist
 COPY --from=development /app/private_key ./private_key
-RUN mkdir /app/private_key/
+# RUN mkdir /app/private_key/
 RUN apk add --no-cache openssh-client  # Install openssh-client package
 
 RUN ssh-keygen -q -t rsa -N '' -f ./private_key/key_for_jwt
