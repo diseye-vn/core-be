@@ -20,7 +20,7 @@ COPY --from=development /app/private_key ./private_key
 # RUN mkdir /app/private_key/
 RUN apk add --no-cache openssh-client  # Install openssh-client package
 
-RUN ssh-keygen -q -t rsa -N '' -f ./private_key/key_for_jwt
+# RUN ssh-keygen -q -t rsa -N '' -f ./private_key/key_for_jwt
 COPY --from=build /app/node_modules ./node_modules
 
 CMD [ "yarn", "start:prod" ]
